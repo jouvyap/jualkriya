@@ -14,18 +14,13 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.squareup.picasso.Picasso;
 
 import bravostudio.nyeni.Adapter.GridAdapter;
+import bravostudio.nyeni.Custom.ArchitectActivity1;
 import bravostudio.nyeni.Custom.CircleImageView;
 import bravostudio.nyeni.Custom.NyeniConstant;
 import bravostudio.nyeni.Custom.SharedPreferencesHelper;
-import bravostudio.nyeni.Custom.SimpleClientTrackingActivity;
-import bravostudio.nyeni.LoginActivity;
 import bravostudio.nyeni.MainActivity;
 import bravostudio.nyeni.R;
 
@@ -50,7 +45,7 @@ public class AccountFragment extends Fragment {
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( getActivity(), SimpleClientTrackingActivity.class);
+                Intent intent = new Intent( getActivity(), ArchitectActivity1.class);
                 startActivity(intent);
             }
         });

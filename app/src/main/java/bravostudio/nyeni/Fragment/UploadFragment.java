@@ -1,12 +1,16 @@
 package bravostudio.nyeni.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -26,7 +31,7 @@ import bravostudio.nyeni.R;
 /**
  * Created by jouvyap on 7/20/16.
  */
-public class UploadFragment extends Fragment {
+public class UploadFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_VIDEO_CAPTURE = 2;
@@ -49,14 +54,14 @@ public class UploadFragment extends Fragment {
         uploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePicture();
+                checkAndGrantPermission(REQUEST_IMAGE_CAPTURE);
             }
         });
 
         uploadVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recordVideo();
+                checkAndGrantPermission(REQUEST_VIDEO_CAPTURE);
             }
         });
 
@@ -182,5 +187,64 @@ public class UploadFragment extends Fragment {
         }
 
         return mediaFile;
+    }
+
+    private void checkAndGrantPermission(int typeRequest){
+        ArrayList<String> permission_request = new ArrayList<>();
+        if(ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permission_request.add(Manifest.permission.CAMERA);
+        }
+        if(ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permission_request.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if(ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permission_request.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
+        String[] permission_array = new String[permission_request.size()];
+        permission_array = permission_request.toArray(permission_array);
+
+        if(permission_array.length != 0){
+            if(typeRequest == REQUEST_IMAGE_CAPTURE){
+                ActivityCompat.requestPermissions(getActivity(), permission_array, REQUEST_IMAGE_CAPTURE);
+            } else if (typeRequest == REQUEST_VIDEO_CAPTURE){
+                ActivityCompat.requestPermissions(getActivity(), permission_array, REQUEST_VIDEO_CAPTURE);
+            }
+        } else{
+            if(typeRequest == REQUEST_IMAGE_CAPTURE){
+                takePicture();
+            } else if (typeRequest == REQUEST_VIDEO_CAPTURE){
+                recordVideo();
+            }
+        }
+    }
+
+    //TODO: NOT CALLED IN FRAGMENT
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_IMAGE_CAPTURE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePicture();
+                } else {
+                    Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+            case REQUEST_VIDEO_CAPTURE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    recordVideo();
+                } else {
+                    Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
 }
