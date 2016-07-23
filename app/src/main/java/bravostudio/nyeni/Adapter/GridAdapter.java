@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import bravostudio.nyeni.Custom.SquareImageView;
+import bravostudio.nyeni.R;
 
 /**
  * Created by jouvyap on 7/19/16.
@@ -42,9 +43,13 @@ public class GridAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new SquareImageView(mContext);
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-            Picasso.with(mContext).load("http://i.imgur.com/DvpvklR.png").into(imageView);
+            Picasso.with(mContext)
+                    .load("http://i.imgur.com/DvpvklR.png")
+                    .placeholder(R.mipmap.ic_query_builder_black_48dp)
+                    .error(R.mipmap.ic_error_outline_black_48dp)
+                    .into(imageView);
         } else {
             imageView = (SquareImageView) convertView;
         }

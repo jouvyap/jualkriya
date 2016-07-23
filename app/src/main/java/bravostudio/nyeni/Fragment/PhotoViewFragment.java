@@ -28,7 +28,11 @@ public class PhotoViewFragment extends Fragment {
 
         SquareImageView squareImageView = (SquareImageView) photoViewFragment.findViewById(R.id
                 .image);
-        Picasso.with(getActivity()).load("http://i.imgur.com/DvpvklR.png").into(squareImageView);
+        Picasso.with(getActivity())
+                .load("http://i.imgur.com/DvpvklR.png")
+                .placeholder(R.mipmap.ic_query_builder_black_48dp)
+                .error(R.mipmap.ic_error_outline_black_48dp)
+                .into(squareImageView);
 
         RelativeLayout favorite = (RelativeLayout) photoViewFragment.findViewById(R.id
                 .favorite_layout);

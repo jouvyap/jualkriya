@@ -99,11 +99,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount acct = result.getSignInAccount();
             sharedPreferencesHelper.setLoggedIn(true);
             sharedPreferencesHelper.setUsernameLoggedIn(acct.getDisplayName());
+            sharedPreferencesHelper.setUserImageURL(acct.getPhotoUrl().toString());
+            Log.d("JOUVY", acct.getPhotoUrl().toString());
             goToMainActivity();
         } else {
             // Signed out, show unauthenticated UI.
             sharedPreferencesHelper.setLoggedIn(false);
             sharedPreferencesHelper.setUsernameLoggedIn("NULL");
+            sharedPreferencesHelper.setUserImageURL("NULL");
 //            updateUI(false);
         }
     }

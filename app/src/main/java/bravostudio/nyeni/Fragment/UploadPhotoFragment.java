@@ -1,13 +1,21 @@
 package bravostudio.nyeni.Fragment;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -38,6 +46,7 @@ public class UploadPhotoFragment extends Fragment {
     private ProgressBar mProgressBar;
     private String mFileUri;
     private long totalSize = 0;
+    private boolean isMonetized = false;
 
     @Nullable
     @Override
@@ -49,7 +58,13 @@ public class UploadPhotoFragment extends Fragment {
 
         SquareImageView squareImageView = (SquareImageView) uploadPhotoFragment.findViewById(R.id
                 .image);
-        Picasso.with(getActivity()).load(new File(mFileUri)).resize(1000, 1000).centerInside().into(squareImageView);
+        Picasso.with(getActivity())
+                .load(new File(mFileUri))
+                .resize(1000, 1000)
+                .centerCrop()
+                .placeholder(R.mipmap.ic_query_builder_black_48dp)
+                .error(R.mipmap.ic_error_outline_black_48dp)
+                .into(squareImageView);
 
         mProgressBar = (ProgressBar) uploadPhotoFragment.findViewById(R.id.progressBar);
 
@@ -61,7 +76,84 @@ public class UploadPhotoFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
         return uploadPhotoFragment;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.upload_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if(i == R.id.monetization){
+            toggleMonetization(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void toggleMonetization(MenuItem item){
+        if(!isMonetized){
+            showMonetizeAlertDialog(item);
+        } else{
+            showCancelMonetizeAlertDialog(item);
+        }
+    }
+
+    private void showMonetizeAlertDialog(final MenuItem item){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        final EditText input = new EditText(getActivity());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setHint("750000");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+
+        builder.setView(input, 50, 0, 50, 0);
+
+        builder.setMessage("Tentukan harga untuk hasil karya seni Anda.")
+                .setTitle("Jual karya seni ini")
+                .setPositiveButton("Jual", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        item.setIcon(R.mipmap.ic_monetization_on_white_24dp);
+                        isMonetized = true;
+                    }
+                })
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+        builder.create().show();
+    }
+
+    private void showCancelMonetizeAlertDialog(final MenuItem item){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage("Batalkan penjualan untuk karya seni Anda.")
+                .setTitle("Karya seni tidak dijual")
+                .setPositiveButton("Tidak dijual", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        item.setIcon(R.mipmap.ic_money_off_white_24dp);
+                        isMonetized = false;
+                    }
+                })
+                .setNegativeButton("Tetap jual", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+        builder.create().show();
     }
 
     private class UploadFileToServer extends AsyncTask<Void, Integer, String> {

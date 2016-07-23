@@ -14,6 +14,7 @@ public class SharedPreferencesHelper {
 
     private static final String KEY_IS_LOGGED_IN = "BRAVOSTUDIO.KEY.LOGGEDIN";
     private static final String KEY_USER_LOGGED_IN = "BRAVOSTUDIO.KEY.USERLOGGEDIN";
+    private static final String KEY_USER_IMAGE_URL = "BRAVOSTUDIO.KEY.USERIMAGEURL";
 
     public SharedPreferencesHelper(Context context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string
@@ -38,5 +39,15 @@ public class SharedPreferencesHelper {
 
     public String getUsernameLoggedIn(){
         return sharedPreferences.getString(KEY_USER_LOGGED_IN, "NULL");
+    }
+
+    public void setUserImageURL(String url){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_IMAGE_URL, url);
+        editor.commit();
+    }
+
+    public String getUserImageURL(){
+        return sharedPreferences.getString(KEY_USER_IMAGE_URL, "NULL");
     }
 }
