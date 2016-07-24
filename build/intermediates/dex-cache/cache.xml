@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.roughike\bottom-bar\1.4.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="c4e65d46b09bd2156ad6fdf147d08b17c0fef75c">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-f5fc7f195d48787cbffc5bb34e05249d15de9995.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.3\5b0002c5fb66867ca919be0fbd86de1cfaf76da7\httpmime-4.3.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\httpmime-4.3-1dde3f51d13df4ff4d20eae0b13e28b66c297d61.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="48917c60ea81213ea39cbd7123996a5401106dc3">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-4b1d2733ace8d35ed08e54694ba13d1941084f74.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="6a0f2d219f82db499ac03d5a985c4eb3e83fc422">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-fd1a8c8c99b42a2f5d43acec5ad92169133ce0f0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\support-annotations-24.1.1-d86f9cf19348d1809b71dbd1320de1265743ca23.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-b3cbf5573fea03c8924734a662c0bc1ef5af3a48.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-f11f2ffb0a3059e418115ab184b501416718712e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-4878969359f38842c75ddbdacb52746ecf67b989.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="e1bec33f1ec5367e25676638b430b9d585f3dbec">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-ac775579855fb9a64bf554119b8bf7a8e75016b2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-ea489525fb36343f25ad3dd31320e2dddaed2b8a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-c41f9a46f27d5a92c5c4c134de43b2c26c2da168.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\libs\wikitudesdk.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="7c5e5c9b24600f61ff5348ab0a7310e5d84138c7">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\wikitudesdk-f90ad89a113d8a6bb030955190078bba82904935.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="d41b5d21cc9dd7d210f0ae82ac509ba7f091d611">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-86da7b142bf3b35b222b7f63ac0f02601fc884b0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.1-4536a06062a357fb0c92fc9895cfecde58c7bc65.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-dc072b6bd488923514a1297356201f5ee39a0c9b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="5337354083e89ed67151859ab0b6b80935c60eaf">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-21e7aa9e700ceb86df3be15094219afd2e1e53d6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-aa4d35c43c69c3fae2e55edb761d91202f55f94f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-f147bad58c8181c4b787f2f7a6afeb4e34dcb312.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="3627eacd7f7cafb5e8ae683992e7b2f9b7dcab1a">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-911a5b2af10462cdc8f7b7ba5d6222efb43aed08.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-a6141d557a9fcab7c2bf15eda924ebb963650b4c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\classes-170bf3a2a7b0046d2a352771f41ed5c320286382.jar" />
+    </item>
+    <item
+        jar="C:\Users\Bravyto\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.1\f5aa318bda4c6c8d688c9d00b90681dcd82ce636\httpcore-4.4.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f5aa318bda4c6c8d688c9d00b90681dcd82ce636">
+        <dex dex="C:\Users\Bravyto\Documents\GitHub\jualkriya\app\build\intermediates\pre-dexed\debug\httpcore-4.4.1-fc8ac15c9a098b95272a8de5b5b63fe0ad22bd0e.jar" />
+    </item>
+
+</items>

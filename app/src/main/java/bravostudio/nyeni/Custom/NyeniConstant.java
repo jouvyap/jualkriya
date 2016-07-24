@@ -16,7 +16,7 @@ public class NyeniConstant {
         public static final int UPLOAD_VIDEO = 5;
     }
 
-    public static final String BASE_URL = "http://192.168.1.107/AndroidFileUpload/fileUpload.php";
+    public static final String BASE_URL = "http://192.168.1.107/nyeni/fileUpload.php";
     public static final String SAVE_DIRECTORY = "NYENI_SAVED_FOLDER";
 
     public static final String FRAGMENT_BUNDLE_FILE_URI = "FILE_URI";

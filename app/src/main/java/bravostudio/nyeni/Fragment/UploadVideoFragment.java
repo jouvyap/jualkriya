@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -18,6 +19,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -26,6 +28,7 @@ import java.io.IOException;
 
 import bravostudio.nyeni.Custom.AndroidMultipartEntity;
 import bravostudio.nyeni.Custom.NyeniConstant;
+import bravostudio.nyeni.Custom.SharedPreferencesHelper;
 import bravostudio.nyeni.R;
 
 /**
@@ -37,11 +40,16 @@ public class UploadVideoFragment extends Fragment {
     private ProgressBar mProgressBar;
     private String mFileUri;
     private long totalSize = 0;
+    private EditText judul, author, tanggal;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         uploadVideoFragment = inflater.inflate(R.layout.fragment_video_upload, container, false);
+
+        judul = (EditText) uploadVideoFragment.findViewById(R.id.video_description);
+        author = (EditText) uploadVideoFragment.findViewById(R.id.video_author);
+        tanggal = (EditText) uploadVideoFragment.findViewById(R.id.video_date);
 
         Bundle bundle = getArguments();
         mFileUri = bundle.getString(NyeniConstant.FRAGMENT_BUNDLE_FILE_URI);
@@ -113,6 +121,11 @@ public class UploadVideoFragment extends Fragment {
 
                 // Adding file data to http body
                 entity.addPart("image", new FileBody(sourceFile));
+                SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+                entity.addPart("username", new StringBody(sharedPreferencesHelper.getUsernameLoggedIn()));
+                entity.addPart("judul", new StringBody(judul.getText().toString()));
+                entity.addPart("author", new StringBody(author.getText().toString()));
+                entity.addPart("tanggal_buat", new StringBody(tanggal.getText().toString()));
 
                 // Extra parameters if you want to pass to server
 //                entity.addPart("website",

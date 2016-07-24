@@ -58,7 +58,7 @@ public class ArchitectActivity1 extends Activity {
 	        	//also, do we REALLY want to embed the stuff inside the app?
 	        	//it makes more sense to host the files on a web-server outside of the app
 	        	//allows for making changes outside of the app
-	            this.architectView.load("http://192.168.1.107/Test1/index.html");
+	            this.architectView.load("http://192.168.1.107/nyeni/index.html");
 
 	        } catch (IOException e1) {
 	            e1.printStackTrace();

@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/photo_description"
+                android:id="@+id/video_description"
                 android:gravity="center"
                 android:background="@color/colorBackground"
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="datetime"
+                    android:inputType="text"
                     android:hint="Tanggal buat"/>
 
             </LinearLayout>

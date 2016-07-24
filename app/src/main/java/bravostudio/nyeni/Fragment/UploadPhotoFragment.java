@@ -1,6 +1,7 @@
 package bravostudio.nyeni.Fragment;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -34,6 +36,7 @@ import java.io.IOException;
 
 import bravostudio.nyeni.Custom.AndroidMultipartEntity;
 import bravostudio.nyeni.Custom.NyeniConstant;
+import bravostudio.nyeni.Custom.SharedPreferencesHelper;
 import bravostudio.nyeni.Custom.SquareImageView;
 import bravostudio.nyeni.R;
 
@@ -47,12 +50,18 @@ public class UploadPhotoFragment extends Fragment {
     private String mFileUri;
     private long totalSize = 0;
     private boolean isMonetized = false;
+    private EditText judul, author, medium, tanggal, dimensi, input;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         uploadPhotoFragment = inflater.inflate(R.layout.fragment_photo_upload, container, false);
 
+        judul = (EditText) uploadPhotoFragment.findViewById(R.id.photo_description);
+        author = (EditText) uploadPhotoFragment.findViewById(R.id.photo_author);
+        medium = (EditText) uploadPhotoFragment.findViewById(R.id.photo_medium);
+        tanggal = (EditText) uploadPhotoFragment.findViewById(R.id.photo_yearr);
+        dimensi = (EditText) uploadPhotoFragment.findViewById(R.id.photo_dimension);
         Bundle bundle = getArguments();
         mFileUri = bundle.getString(NyeniConstant.FRAGMENT_BUNDLE_FILE_URI);
 
@@ -105,7 +114,7 @@ public class UploadPhotoFragment extends Fragment {
     private void showMonetizeAlertDialog(final MenuItem item){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        final EditText input = new EditText(getActivity());
+        input = new EditText(getActivity());
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         input.setHint("750000");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -200,6 +209,18 @@ public class UploadPhotoFragment extends Fragment {
 
                 // Adding file data to http body
                 entity.addPart("image", new FileBody(sourceFile));
+                SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+                entity.addPart("username", new StringBody(sharedPreferencesHelper.getUsernameLoggedIn()));
+                entity.addPart("judul", new StringBody(judul.getText().toString()));
+                entity.addPart("author", new StringBody(author.getText().toString()));
+                entity.addPart("medium", new StringBody(medium.getText().toString()));
+                entity.addPart("tanggal_buat", new StringBody(tanggal.getText().toString()));
+                entity.addPart("dimensi", new StringBody(dimensi.getText().toString()));
+                if (isMonetized) {
+                    entity.addPart("harga", new StringBody(input.getText().toString()));
+                } else {
+                    entity.addPart("harga", new StringBody("Tidak dijual"));
+                }
 
                 // Extra parameters if you want to pass to server
 //                entity.addPart("website",
