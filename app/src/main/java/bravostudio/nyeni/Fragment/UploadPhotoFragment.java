@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +36,17 @@ import java.io.IOException;
 import bravostudio.nyeni.Custom.AndroidMultipartEntity;
 import bravostudio.nyeni.Custom.NyeniConstant;
 import bravostudio.nyeni.Custom.SquareImageView;
+import bravostudio.nyeni.Interface.NyeniNetworkInterface;
+import bravostudio.nyeni.Model.FileUpload;
 import bravostudio.nyeni.R;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by jouvyap on 7/20/16.
@@ -47,6 +58,9 @@ public class UploadPhotoFragment extends Fragment {
     private String mFileUri;
     private long totalSize = 0;
     private boolean isMonetized = false;
+
+    private Retrofit retrofit;
+    private NyeniNetworkInterface nyeniNetworkInterface;
 
     @Nullable
     @Override
@@ -72,9 +86,17 @@ public class UploadPhotoFragment extends Fragment {
         buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new UploadFileToServer().execute();
+                testUploadViaRetrofit();
+//                new UploadFileToServer().execute();
             }
         });
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(NyeniConstant.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        nyeniNetworkInterface = retrofit.create(NyeniNetworkInterface.class);
 
         setHasOptionsMenu(true);
         return uploadPhotoFragment;
@@ -100,6 +122,37 @@ public class UploadPhotoFragment extends Fragment {
         } else{
             showCancelMonetizeAlertDialog(item);
         }
+    }
+
+    private void testUploadViaRetrofit(){
+        File image = new File(mFileUri);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), image);
+
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image", image.getName(), imageBody);
+
+        RequestBody username = RequestBody.create(MediaType.parse("text/plain"), "Bravyto Takwa Pangukir");
+        RequestBody judul = RequestBody.create(MediaType.parse("text/plain"), "Ketika senja");
+        RequestBody author = RequestBody.create(MediaType.parse("text/plain"), "Jouvy");
+        RequestBody medium = RequestBody.create(MediaType.parse("text/plain"), "Kanvas");
+        RequestBody tanggalBuat = RequestBody.create(MediaType.parse("text/plain"), "1994/10/31");
+        RequestBody dimensi = RequestBody.create(MediaType.parse("text/plain"), "100 x 100");
+        RequestBody harga = RequestBody.create(MediaType.parse("text/plain"), "0");
+        Call<FileUpload> call = nyeniNetworkInterface.updateUser(body, username, judul,
+                author, medium, tanggalBuat, dimensi, harga);
+
+        call.enqueue(new Callback<FileUpload>() {
+            @Override
+            public void onResponse(Call<FileUpload> call, Response<FileUpload> response) {
+                FileUpload data = response.body();
+                Log.d("JOUVY", data.getMessage());
+                Log.d("JOUVY", "" + data.getError());
+            }
+
+            @Override
+            public void onFailure(Call<FileUpload> call, Throwable t) {
+                Log.d("JOUVY", "ERROR MAKING REQUEST");
+            }
+        });
     }
 
     private void showMonetizeAlertDialog(final MenuItem item){
@@ -185,7 +238,7 @@ public class UploadPhotoFragment extends Fragment {
             String responseString = null;
 
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(NyeniConstant.BASE_URL);
+            HttpPost httppost = new HttpPost(NyeniConstant.BASE_URL + "fileUpload.php");
 
             try {
                 AndroidMultipartEntity entity = new AndroidMultipartEntity(

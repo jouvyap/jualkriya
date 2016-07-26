@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import bravostudio.nyeni.Custom.SquareImageView;
 import bravostudio.nyeni.R;
 
@@ -17,14 +19,18 @@ import bravostudio.nyeni.R;
 public class GridAdapter extends BaseAdapter {
 
     private Context mContext;
+    private List<String> mData;
+    private List<String> mId;
 
-    public GridAdapter(Context c) {
+    public GridAdapter(Context c, List<String> d, List<String> i) {
         mContext = c;
+        mData= d;
+        mId = i;
     }
 
     @Override
     public int getCount() {
-        return 14;
+        return mData.size();
     }
 
     @Override
@@ -34,7 +40,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return Long.parseLong(mId.get(position));
     }
 
     @Override
@@ -46,7 +52,9 @@ public class GridAdapter extends BaseAdapter {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             Picasso.with(mContext)
-                    .load("http://i.imgur.com/DvpvklR.png")
+                    .load(mData.get(position))
+                    .resize(500, 500)
+                    .centerCrop()
                     .placeholder(R.mipmap.ic_query_builder_black_48dp)
                     .error(R.mipmap.ic_error_outline_black_48dp)
                     .into(imageView);
