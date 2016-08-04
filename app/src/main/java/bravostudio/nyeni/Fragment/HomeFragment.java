@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
                 Log.d("JOUVY", "" + id);
 
                 MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.changeFragment(NyeniConstant.MENU_TAB.PHOTO_VIEW);
+                mainActivity.changeFragment(NyeniConstant.MENU_TAB.PHOTO_VIEW, "" + id);
             }
         });
 

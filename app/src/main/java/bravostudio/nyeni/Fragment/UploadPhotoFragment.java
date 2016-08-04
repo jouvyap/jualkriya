@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -35,8 +36,10 @@ import java.io.IOException;
 
 import bravostudio.nyeni.Custom.AndroidMultipartEntity;
 import bravostudio.nyeni.Custom.NyeniConstant;
+import bravostudio.nyeni.Custom.SharedPreferencesHelper;
 import bravostudio.nyeni.Custom.SquareImageView;
 import bravostudio.nyeni.Interface.NyeniNetworkInterface;
+import bravostudio.nyeni.MainActivity;
 import bravostudio.nyeni.Model.FileUpload;
 import bravostudio.nyeni.R;
 import okhttp3.MediaType;
@@ -58,6 +61,12 @@ public class UploadPhotoFragment extends Fragment {
     private String mFileUri;
     private long totalSize = 0;
     private boolean isMonetized = false;
+
+    private EditText photoDesc;
+    private EditText photoAuthor;
+    private EditText photoMedium;
+    private EditText photoDate;
+    private EditText photoDimension;
 
     private Retrofit retrofit;
     private NyeniNetworkInterface nyeniNetworkInterface;
@@ -81,6 +90,12 @@ public class UploadPhotoFragment extends Fragment {
                 .into(squareImageView);
 
         mProgressBar = (ProgressBar) uploadPhotoFragment.findViewById(R.id.progressBar);
+
+        photoDesc = (EditText) uploadPhotoFragment.findViewById(R.id.photo_description);
+        photoAuthor = (EditText) uploadPhotoFragment.findViewById(R.id.photo_author);
+        photoMedium = (EditText) uploadPhotoFragment.findViewById(R.id.photo_medium);
+        photoDate = (EditText) uploadPhotoFragment.findViewById(R.id.photo_date);
+        photoDimension = (EditText) uploadPhotoFragment.findViewById(R.id.photo_dimension);
 
         Button buttonUpload = (Button) uploadPhotoFragment.findViewById(R.id.buttonUpload);
         buttonUpload.setOnClickListener(new View.OnClickListener() {
@@ -130,27 +145,38 @@ public class UploadPhotoFragment extends Fragment {
 
         MultipartBody.Part body = MultipartBody.Part.createFormData("image", image.getName(), imageBody);
 
-        RequestBody username = RequestBody.create(MediaType.parse("text/plain"), "Bravyto Takwa Pangukir");
-        RequestBody judul = RequestBody.create(MediaType.parse("text/plain"), "Ketika senja");
-        RequestBody author = RequestBody.create(MediaType.parse("text/plain"), "Jouvy");
-        RequestBody medium = RequestBody.create(MediaType.parse("text/plain"), "Kanvas");
-        RequestBody tanggalBuat = RequestBody.create(MediaType.parse("text/plain"), "1994/10/31");
-        RequestBody dimensi = RequestBody.create(MediaType.parse("text/plain"), "100 x 100");
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+
+        RequestBody username = RequestBody.create(MediaType.parse("text/plain"), sharedPreferencesHelper.getUsernameLoggedIn());
+        RequestBody judul = RequestBody.create(MediaType.parse("text/plain"), photoDesc.getText().toString());
+        RequestBody author = RequestBody.create(MediaType.parse("text/plain"), photoAuthor.getText().toString());
+        RequestBody medium = RequestBody.create(MediaType.parse("text/plain"), photoMedium.getText().toString());
+        RequestBody tanggalBuat = RequestBody.create(MediaType.parse("text/plain"), photoDate.getText().toString());
+        RequestBody dimensi = RequestBody.create(MediaType.parse("text/plain"), photoDimension.getText().toString());
         RequestBody harga = RequestBody.create(MediaType.parse("text/plain"), "0");
         Call<FileUpload> call = nyeniNetworkInterface.updateUser(body, username, judul,
                 author, medium, tanggalBuat, dimensi, harga);
+
+        mProgressBar.setVisibility(View.VISIBLE);
 
         call.enqueue(new Callback<FileUpload>() {
             @Override
             public void onResponse(Call<FileUpload> call, Response<FileUpload> response) {
                 FileUpload data = response.body();
-                Log.d("JOUVY", data.getMessage());
-                Log.d("JOUVY", "" + data.getError());
+                if(!data.getError()){
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "Success upload photo", Toast.LENGTH_SHORT)
+                            .show();
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.mBottomBar.selectTabAtPosition(NyeniConstant.MENU_TAB.ACCOUNT,
+                            true);
+                }
             }
 
             @Override
             public void onFailure(Call<FileUpload> call, Throwable t) {
-                Log.d("JOUVY", "ERROR MAKING REQUEST");
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Failed to upload photo", Toast.LENGTH_SHORT).show();
             }
         });
     }

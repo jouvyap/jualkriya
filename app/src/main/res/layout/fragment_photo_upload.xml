@@ -79,7 +79,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/photo_yearr"
+                    android:id="@+id/photo_date"
                     android:gravity="center"
                     android:padding="8dp"
                     android:background="@color/colorBackground"
@@ -111,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="true"
                 android:visibility="gone"/>
             <Button
                 android:id="@+id/buttonUpload"

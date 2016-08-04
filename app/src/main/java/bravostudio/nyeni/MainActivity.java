@@ -27,7 +27,7 @@ import bravostudio.nyeni.Fragment.UploadVideoFragment;
 public class MainActivity extends AppCompatActivity {
 
     private FrameLayout mMainContent;
-    private BottomBar mBottomBar;
+    public BottomBar mBottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case NyeniConstant.MENU_TAB.PHOTO_VIEW:
                 targetFragment = new PhotoViewFragment();
+                args.putString(NyeniConstant.FRAGMENT_BUNDLE_PHOTO_ID, param[0]);
+                targetFragment.setArguments(args);
                 break;
             case NyeniConstant.MENU_TAB.UPLOAD_PHOTO:
                 targetFragment = new UploadPhotoFragment();

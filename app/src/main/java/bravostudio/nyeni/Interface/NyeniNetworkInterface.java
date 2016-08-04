@@ -2,6 +2,7 @@ package bravostudio.nyeni.Interface;
 
 import bravostudio.nyeni.Model.Feed;
 import bravostudio.nyeni.Model.FileUpload;
+import bravostudio.nyeni.Model.PhotoViewModel;
 import bravostudio.nyeni.Model.UserFeed;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -32,4 +33,7 @@ public interface NyeniNetworkInterface {
                                 @Part("tanggal_buat") RequestBody tanggal_buat,
                                 @Part("dimensi") RequestBody dimensi,
                                 @Part("harga") RequestBody harga);
+
+    @GET("getKriya.php")
+    Call<PhotoViewModel> getPhoto(@Query("id") String id, @Query("username") String username);
 }

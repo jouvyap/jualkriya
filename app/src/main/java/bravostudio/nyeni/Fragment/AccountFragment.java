@@ -81,7 +81,7 @@ public class AccountFragment extends Fragment {
                 Log.d("JOUVY", "" + id);
 
                 MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.changeFragment(NyeniConstant.MENU_TAB.PHOTO_VIEW);
+                mainActivity.changeFragment(NyeniConstant.MENU_TAB.PHOTO_VIEW, "" + id);
             }
         });
 
@@ -115,7 +115,8 @@ public class AccountFragment extends Fragment {
     }
 
     private void callGetUserFeed(){
-        Call<UserFeed> call = nyeniNetworkInterface.getUserFeed("Bravyto Takwa Pangukir");
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+        Call<UserFeed> call = nyeniNetworkInterface.getUserFeed(sharedPreferencesHelper.getUsernameLoggedIn());
         call.enqueue(new Callback<UserFeed>() {
             @Override
             public void onResponse(Call<UserFeed> call, Response<UserFeed> response) {
